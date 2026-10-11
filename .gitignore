@@ -1,0 +1,36 @@
+# Local Terraform working directories and provider plugins
+.terraform/
+**/.terraform/*
+
+# Lock files: modules are libraries, the calling root config pins providers
+.terraform.lock.hcl
+
+# State and backups
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Plans and crash logs
+*.tfplan
+*.tfplan.json
+crash.log
+crash.*.log
+
+# Local variable files and overrides (may contain secrets)
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# CLI configuration
+.terraformrc
+terraform.rc
+
+# Editor / OS noise
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db

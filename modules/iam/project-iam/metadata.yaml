@@ -1,0 +1,36 @@
+name: project-iam
+display_name: "Project IAM Grant"
+category: "IAM"
+cloud: "gcp"
+icon: "key"
+description: "Grants one IAM role to one principal on a project (additive, never removes existing access)."
+instance_label_field: "member"
+variables:
+  # --- Basics -----------------------------------------------------------------
+  project_id:
+    example: "acme-prod-app-01"
+    group: "Basics"
+  member:
+    example: "serviceAccount:sa-app-vm@acme-prod-app-01.iam.gserviceaccount.com"
+    group: "Basics"
+  role:
+    example: "roles/logging.logWriter"
+    group: "Basics"
+  # --- IAM condition ----------------------------------------------------------
+  condition_title:
+    example: "temporary-access-until-2026-12-31"
+    group: "IAM condition"
+    advanced: true
+  condition_expression:
+    example: 'request.time < timestamp("2026-12-31T00:00:00Z")'
+    group: "IAM condition"
+    advanced: true
+  condition_description:
+    example: "Temporary access for the Q4 migration"
+    group: "IAM condition"
+    advanced: true
+  # --- Security ---------------------------------------------------------------
+  allow_privileged_roles:
+    example: "false"
+    group: "Security"
+    advanced: true

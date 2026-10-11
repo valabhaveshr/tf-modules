@@ -1,0 +1,106 @@
+name: instance
+display_name: "Compute Instance"
+category: "Compute"
+cloud: "gcp"
+icon: "server"
+description: "A single hardened Compute Engine VM: private by default, OS Login, Shielded VM, dedicated service account and optional CMEK boot disk."
+instance_label_field: "name"
+variables:
+  # --- Basics -----------------------------------------------------------------
+  project_id:
+    example: "acme-prod-app-01"
+    group: "Basics"
+  name:
+    example: "vm-app-prod-01"
+    group: "Basics"
+  zone:
+    example: "us-central1-a"
+    group: "Basics"
+  machine_type:
+    example: "e2-standard-2"
+    group: "Basics"
+  description:
+    example: "Application server for the billing API"
+    group: "Basics"
+  labels:
+    example: '{ environment = "prod", team = "platform" }'
+    group: "Basics"
+  # --- Networking -------------------------------------------------------------
+  subnetwork:
+    example: "projects/acme-prod-net-01/regions/us-central1/subnetworks/snet-app"
+    group: "Networking"
+  network_ip:
+    example: "10.10.0.5"
+    group: "Networking"
+  network_tags:
+    example: '["web", "allow-health-checks"]'
+    group: "Networking"
+  enable_public_access:
+    example: "false"
+    group: "Networking"
+  hostname:
+    example: "app01.internal.example.com"
+    group: "Networking"
+    advanced: true
+  enable_ip_forwarding:
+    example: "false"
+    group: "Networking"
+    advanced: true
+  # --- Boot disk --------------------------------------------------------------
+  boot_disk_image:
+    example: "debian-cloud/debian-12"
+    group: "Boot disk"
+  boot_disk_type:
+    example: "pd-balanced"
+    group: "Boot disk"
+  boot_disk_size_gb:
+    example: "50"
+    group: "Boot disk"
+  boot_disk_kms_key_self_link:
+    example: "projects/acme-prod-kms-01/locations/us-central1/keyRings/kr-compute/cryptoKeys/key-disks"
+    group: "Boot disk"
+    advanced: true
+  # --- Security ---------------------------------------------------------------
+  service_account_email:
+    example: "sa-app-vm@acme-prod-app-01.iam.gserviceaccount.com"
+    group: "Security"
+  deletion_protection:
+    example: "true"
+    group: "Security"
+  enable_secure_boot:
+    example: "true"
+    group: "Security"
+    advanced: true
+  enable_vtpm:
+    example: "true"
+    group: "Security"
+    advanced: true
+  enable_integrity_monitoring:
+    example: "true"
+    group: "Security"
+    advanced: true
+  enable_confidential_compute:
+    example: "false"
+    group: "Security"
+    advanced: true
+  # --- Scheduling -------------------------------------------------------------
+  provisioning_model:
+    example: "STANDARD"
+    group: "Scheduling"
+  spot_termination_action:
+    example: "STOP"
+    group: "Scheduling"
+    advanced: true
+  # --- Advanced ---------------------------------------------------------------
+  startup_script:
+    example: "#!/bin/bash\napt-get update && apt-get install -y nginx"
+    group: "Advanced"
+    advanced: true
+  metadata:
+    example: '{ google-logging-enabled = "true" }'
+    group: "Advanced"
+    advanced: true
+  attached_disks:
+    example: '[{ source = "projects/acme-prod-app-01/zones/us-central1-a/disks/disk-data-01", device_name = "data", mode = "READ_WRITE" }]'
+    group: "Advanced"
+    advanced: true
